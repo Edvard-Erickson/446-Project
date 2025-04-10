@@ -1,23 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
 {
 
-    public int _sizeWidth;
-    public int _sizeHeight;
+    public ItemData _itemData;
+
+    public int _onGridPosX;
+    public int _onGridPosY;
 
 
-    // Start is called before the first frame update
-    void Start()
+    internal void Set(ItemData itemData)
     {
-        
-    }
+        _itemData = itemData;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        GetComponent<Image>().sprite = itemData.itemIcon;
+
+        Vector2 size = new Vector2();
+        size.x = itemData._width * 32f;
+        size.y = itemData._height * 32f;
+        GetComponent<RectTransform>().sizeDelta = size;
+     }
+
 }
