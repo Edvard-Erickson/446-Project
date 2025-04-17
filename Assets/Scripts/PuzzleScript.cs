@@ -4,7 +4,7 @@ using System.Data;
 using System.Net;
 using UnityEngine;
 
-public class puzzelScript : MonoBehaviour
+public class puzzelScript : MonoBehaviour, IInteractable
 {
     public int numStates;
     int currentState = 0;
@@ -86,26 +86,44 @@ public class puzzelScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.collider.CompareTag("player"))
+    //    {
+    //        if (boxNum == 1)
+    //        {
+    //            Messenger.Broadcast(EventHandler.TARGET_TWO_UPDATE);
+    //        }
+    //        else if (boxNum == 2)
+    //        {
+    //            Messenger.Broadcast(EventHandler.TARGET_THREE_UPDATE);
+    //        }
+    //        else if (boxNum == 3)
+    //        {
+    //            Messenger.Broadcast(EventHandler.TARGET_ONE_UPDATE);
+    //        }
+
+    //        currentState++;
+
+
+    //    }
+    //}
+
+    public void interact()
     {
-        if (collision.collider.CompareTag("player"))
+        if (boxNum == 1)
         {
-            if (boxNum == 1)
-            {
-                Messenger.Broadcast(EventHandler.TARGET_TWO_UPDATE);
-            }
-            else if (boxNum == 2)
-            {
-                Messenger.Broadcast(EventHandler.TARGET_THREE_UPDATE);
-            }
-            else if (boxNum == 3)
-            {
-                Messenger.Broadcast(EventHandler.TARGET_ONE_UPDATE);
-            }
-
-            currentState++;
-
-
+            Messenger.Broadcast(EventHandler.TARGET_TWO_UPDATE);
         }
+        else if (boxNum == 2)
+        {
+            Messenger.Broadcast(EventHandler.TARGET_THREE_UPDATE);
+        }
+        else if (boxNum == 3)
+        {
+            Messenger.Broadcast(EventHandler.TARGET_ONE_UPDATE);
+        }
+
+        currentState++;
     }
 }
