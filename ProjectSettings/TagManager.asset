@@ -3,12 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-
   tags:
-  - bullet
-  - player
   - person
-
+  - player
   layers:
   - Default
   - TransparentFX
@@ -16,7 +13,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - PP Layer
   - 
   - 
   - 

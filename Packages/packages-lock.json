@@ -1,6 +1,5 @@
 {
   "dependencies": {
-
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -47,25 +46,20 @@
     "com.unity.collab-proxy": {
       "version": "2.4.4",
       "depth": 0,
-
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
-
       "depth": 1,
-
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-
     "com.unity.ide.rider": {
       "version": "3.0.31",
       "depth": 0,
-
       "source": "registry",
       "dependencies": {
         "com.unity.ext.nunit": "1.0.6"
@@ -74,9 +68,7 @@
     },
     "com.unity.ide.visualstudio": {
       "version": "2.0.22",
-
       "depth": 0,
-
       "source": "registry",
       "dependencies": {
         "com.unity.test-framework": "1.1.9"
@@ -85,14 +77,11 @@
     },
     "com.unity.ide.vscode": {
       "version": "1.2.5",
-
       "depth": 0,
-
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-
     "com.unity.inputsystem": {
       "version": "1.7.0",
       "depth": 0,
@@ -104,13 +93,20 @@
     },
     "com.unity.nuget.newtonsoft-json": {
       "version": "3.2.1",
-
       "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-
+    "com.unity.postprocessing": {
+      "version": "3.4.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.physics": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.purchasing": {
       "version": "4.11.0",
       "depth": 0,
@@ -131,12 +127,10 @@
       "dependencies": {
         "com.unity.ugui": "1.0.0",
         "com.unity.services.core": "1.10.1",
-
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
-
     "com.unity.services.core": {
       "version": "1.12.5",
       "depth": 1,
@@ -156,7 +150,6 @@
         "com.unity.ext.nunit": "1.0.6",
         "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
-
       },
       "url": "https://packages.unity.com"
     },
@@ -190,7 +183,6 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
-
     "com.unity.xr.legacyinputhelpers": {
       "version": "2.1.10",
       "depth": 0,
@@ -198,7 +190,6 @@
       "dependencies": {
         "com.unity.modules.vr": "1.0.0",
         "com.unity.modules.xr": "1.0.0"
-
       },
       "url": "https://packages.unity.com"
     },

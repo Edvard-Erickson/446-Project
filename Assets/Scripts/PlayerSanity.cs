@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
@@ -10,12 +11,14 @@ public class PlayerSanity : MonoBehaviour
     public float maxSan;
     public GameObject monster;
     public float currSan;
+    public PostProcessVolume ppv;
 
-    Scene currentScene = SceneManager.GetActiveScene();
 
     // Start is called before the first frame update
     void Start()
     {
+        ppv = GetComponent<PostProcessVolume>();
+        ppv.weight = 0f;
         currSan = maxSan;
         sanbar.setMax(maxSan);
         StartCoroutine(tickSanity());
@@ -24,8 +27,7 @@ public class PlayerSanity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(currentScene.name);
-        if(currSan <= 0)
+        if (currSan <= 0)
         {
             SceneManager.LoadScene(4);
         }
@@ -35,12 +37,16 @@ public class PlayerSanity : MonoBehaviour
     {
         while (true)
         {
-            if ((monster.transform.position - transform.position).magnitude < 5){
+            if ((monster.transform.position - transform.position).magnitude < 5)
+            {
+                ppv.weight = 1 - (currSan / maxSan);
                 currSan = currSan - 1f;
                 sanbar.SetSanity(currSan);
                 yield return new WaitForSeconds(1f);
-            } else
+            }
+            else
             {
+                ppv.weight = 1 - (currSan / maxSan);
                 currSan = currSan - .1f;
                 sanbar.SetSanity(currSan);
                 yield return new WaitForSeconds(1f);

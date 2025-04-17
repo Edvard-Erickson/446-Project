@@ -4,11 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SplashScene.unity
-    guid: 00b9426d610cb6a41bc3a8dbda2db8c5
+    path: Assets/Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/MenuScene.unity
     guid: 71614b535eecac04db76c5d4ec290bd6
@@ -16,10 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 9406091eb013e4e46805d18ecbd1b829
   - enabled: 1
-    path: Assets/Scenes/WinScene.unity
-    guid: 83bf2a3152f958048881e9a765df777f
+    path: Assets/Scenes/SplashScene.unity
+    guid: 00b9426d610cb6a41bc3a8dbda2db8c5
   - enabled: 1
     path: Assets/Scenes/LoseScreen.unity
     guid: d1e89c6ac9626444eadfc529b65a914d
-
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: 83bf2a3152f958048881e9a765df777f
   m_configObjects: {}
