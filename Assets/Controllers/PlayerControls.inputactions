@@ -122,6 +122,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a7d6f6ba-3116-4c8d-9cda-90e9d2161291",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c24b2c3f-57ae-4e1a-8d30-5089fba05456",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
