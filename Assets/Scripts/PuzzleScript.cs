@@ -17,6 +17,8 @@ public class puzzelScript : MonoBehaviour, IInteractable
     public Material red;
 
     bool accepting = false;
+
+    Animator anim;
     void updateState1()
     {
         if (boxNum == 1)
@@ -45,6 +47,7 @@ public class puzzelScript : MonoBehaviour, IInteractable
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         mr = GetComponent<MeshRenderer>();
         mr.material = red;
 
@@ -111,6 +114,7 @@ public class puzzelScript : MonoBehaviour, IInteractable
 
     public void interact()
     {
+        anim.SetTrigger("ButtonPress");
         if (boxNum == 1)
         {
             Messenger.Broadcast(EventHandler.TARGET_TWO_UPDATE);

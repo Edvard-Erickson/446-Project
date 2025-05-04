@@ -38,6 +38,8 @@ public class AIEnemy : MonoBehaviour
     private float attackTimer;         // Timer for attack cooldown
     private float currentAttackTimer;  // Timer for current attack duration
 
+
+
     // Initialize components
     private void Start()
     {
@@ -95,6 +97,8 @@ public class AIEnemy : MonoBehaviour
         {
             Vector3 randomPosition = GetRandomNavMeshPosition();
             navAgent.SetDestination(randomPosition);
+
+            animator.SetFloat("Walk", 1);
         }
     }
 
@@ -103,7 +107,7 @@ public class AIEnemy : MonoBehaviour
         if (lastHeardPosition != null)
         {
             navAgent.SetDestination(lastHeardPosition);
-
+            animator.SetFloat("Walk", 1);
             if (Vector3.Distance(transform.position, lastHeardPosition) < 3f)
             {
                 SwitchState(AIState.Roaming);
@@ -140,10 +144,7 @@ public class AIEnemy : MonoBehaviour
         FacePlayer();
 
         // Start attack animation
-        if (animator != null)
-        {
-            animator.SetTrigger("Attack");
-        }
+        animator.SetTrigger("Rage");
 
         // Track attack duration
         currentAttackTimer += Time.deltaTime;
