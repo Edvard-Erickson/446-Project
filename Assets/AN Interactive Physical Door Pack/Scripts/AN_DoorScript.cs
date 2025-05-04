@@ -20,7 +20,6 @@ public class AN_DoorScript : MonoBehaviour, IInteractable
     [Tooltip("Speed for door opening, degrees per sec")]
     public float OpenSpeed = 3f;
 
-    // NearView()
     float distance;
     float angleView;
     Vector3 direction;
@@ -75,20 +74,16 @@ public class AN_DoorScript : MonoBehaviour, IInteractable
             else if (!isOpened && CanOpen)
             {
                 isOpened = true;
-                rbDoor.AddRelativeTorque(new Vector3(0, 0, 20f)); 
+                rbDoor.AddRelativeTorque(new Vector3(0, 0, 20f));
+                if (sceneName.Equals("MainScene"))
+                {
+                    SceneManager.LoadScene(3);
+                }
             }
         
         }
     }
 
-    bool NearView() // it is true if you near interactive object
-    {
-        distance = Vector3.Distance(transform.position, Camera.main.transform.position);
-        direction = transform.position - Camera.main.transform.position;
-        angleView = Vector3.Angle(Camera.main.transform.forward, direction);
-        if (distance < 3f) return true; // angleView < 35f && 
-        else return false;
-    }
 
     private void FixedUpdate() // door is physical object
     {

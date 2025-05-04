@@ -17,6 +17,8 @@ public class InventoryGrid : MonoBehaviour
 
     public GameObject _torch;
 
+    public bool torchIsActive = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +47,7 @@ public class InventoryGrid : MonoBehaviour
                     if (_inventoryItemSlot[x, y]._itemData._name == "torch")
                     {
                         _torch.SetActive(true);
+                        torchIsActive = true;
                     }
                 }
             }
@@ -195,5 +198,10 @@ public class InventoryGrid : MonoBehaviour
     internal InventoryItem GetItem(int x, int y)
     {
         return _inventoryItemSlot[x, y];
+    }
+
+    public bool GetTorchState()
+    {
+        return torchIsActive;
     }
 }

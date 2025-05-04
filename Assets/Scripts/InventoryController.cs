@@ -148,4 +148,14 @@ public class InventoryController : MonoBehaviour
             _itemRect.position = Input.mousePosition;
         }
     }
+
+    public void CreateItem(int selectItem)
+    {
+        InventoryItem inventoryItem = Instantiate(_itemPrefab).GetComponent<InventoryItem>();
+        _selectedItem = inventoryItem;
+        _itemRect = inventoryItem.GetComponent<RectTransform>();
+        _itemRect.SetParent(_canvasTransform);
+
+        inventoryItem.Set(_items[selectItem]);
+    }
 }

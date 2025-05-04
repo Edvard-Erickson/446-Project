@@ -54,6 +54,9 @@ public class puzzelScript : MonoBehaviour, IInteractable
         Messenger.AddListener(EventHandler.TARGET_ONE_UPDATE, updateState1);
         Messenger.AddListener(EventHandler.TARGET_TWO_UPDATE, updateState2);
         Messenger.AddListener(EventHandler.TARGET_THREE_UPDATE, updateState3);
+        Messenger.AddListener(EventHandler.ALL_TORCH_LIT, activePuzzle);
+
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -129,5 +132,11 @@ public class puzzelScript : MonoBehaviour, IInteractable
         }
 
         currentState++;
+    }
+
+    public void activePuzzle()
+    {
+        gameObject.SetActive(true);
+        print("All Lit");
     }
 }
