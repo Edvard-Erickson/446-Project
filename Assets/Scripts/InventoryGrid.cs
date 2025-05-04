@@ -72,6 +72,11 @@ public class InventoryGrid : MonoBehaviour
         return _tileGridPos;
     }
 
+    public void AddNewItem(ItemData itemData)
+    {
+
+    }
+
     public bool PlaceItem(InventoryItem inventoryItem, int posX, int posY, ref InventoryItem overlapItem)
     {
         if (BoundryCheck(posX, posY, inventoryItem._itemData._width, inventoryItem._itemData._height) == false)

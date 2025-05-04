@@ -18,6 +18,8 @@ public class shoot : MonoBehaviour
     ObjectPool _bulletPool;
     Transform _transform;
 
+    InventoryGrid _inventoryGrid;
+
     RaycastHit _hit;
     // Start is called before the first frame update
     void Start()
@@ -46,6 +48,15 @@ public class shoot : MonoBehaviour
             {
                 interactObj.interact();
             }
+            else if (_hit.collider.gameObject.CompareTag("pickUp"))
+            {
+                PickUpWorldItem(_hit.collider.gameObject.GetComponent<WorldItemScript>()._itemData);
+            }
         }
+    }
+
+    public void PickUpWorldItem(ItemData itemData)
+    {
+        _inventoryGrid.AddNewItem(itemData);
     }
 }

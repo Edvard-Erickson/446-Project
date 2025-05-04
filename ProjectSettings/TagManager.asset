@@ -6,6 +6,7 @@ TagManager:
   tags:
   - person
   - player
+  - pickUp
   layers:
   - Default
   - TransparentFX
