@@ -10,4 +10,7 @@ public static class EventHandler
 
     public const string TARGET_ACCEPTING = "acc";
     public const string TARGET_DEACTIVE = "dec";
+
+    public const string TORCH_LIT = "torch is lit";
+    public const string ALL_TORCH_LIT = "all lit";
 }

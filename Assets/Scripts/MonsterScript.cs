@@ -38,7 +38,7 @@ public class AIEnemy : MonoBehaviour
     private float attackTimer;         // Timer for attack cooldown
     private float currentAttackTimer;  // Timer for current attack duration
 
-
+    private Rigidbody _rb;
 
     // Initialize components
     private void Start()
@@ -49,6 +49,8 @@ public class AIEnemy : MonoBehaviour
         animator = GetComponent<Animator>();
         lastPlayerPosition = player.position;
         SwitchState(AIState.Roaming);
+
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -238,9 +240,13 @@ public class AIEnemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Fixes bug when monster hits something
+        _rb.velocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
+
         if (collision.collider.CompareTag("person") && currentState != AIState.Attacking && currentState != AIState.Recovering)
         {
             SwitchState(AIState.Attacking);
-        }
+        } 
     }
 }
