@@ -17,6 +17,7 @@ public class shoot : MonoBehaviour
     public Transform _bulletSpawnPt;
     ObjectPool _bulletPool;
     Transform _transform;
+    
 
     RaycastHit _hit;
     // Start is called before the first frame update
@@ -30,7 +31,17 @@ public class shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Physics.Raycast(_bulletSpawnPt.transform.position, _bulletSpawnPt.transform.TransformDirection(Vector3.forward), out _hit, 3f))
+        {
+            if (_hit.collider.gameObject.TryGetComponent(out ToolTip interactObj))
+            {
+                interactObj.DispMessage();
+            }
+        }
+        else
+        {
+            ToolTipManager._instance.HideToolTip();
+        }
     }
 
     public void OnShoot(InputValue val)
