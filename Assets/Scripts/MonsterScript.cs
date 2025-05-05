@@ -37,8 +37,16 @@ public class AIEnemy : MonoBehaviour
     private float stopChaseTimer;      // Timer for waiting after player gets too far
     private float attackTimer;         // Timer for attack cooldown
     private float currentAttackTimer;  // Timer for current attack duration
+    private SanityBar playerSan;       // Gets the player sanity bar
 
     private Rigidbody _rb;
+
+    // Monster Audio
+    AudioSource audioSource;
+    public AudioClip _monsterGrunt;
+    public AudioClip _monsterClick;
+    bool canClick = true;
+    bool canGrunt = true;
 
     // Initialize components
     private void Start()
@@ -47,7 +55,9 @@ public class AIEnemy : MonoBehaviour
         navAgent.speed = chaseSpeed;
         playerController = player.GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         lastPlayerPosition = player.position;
+        playerSan = FindAnyObjectByType<SanityBar>();
         SwitchState(AIState.Roaming);
 
         _rb = GetComponent<Rigidbody>();
@@ -101,6 +111,13 @@ public class AIEnemy : MonoBehaviour
             navAgent.SetDestination(randomPosition);
 
             animator.SetFloat("Walk", 1);
+
+            if (canClick)
+            {
+                canClick = false;
+                Invoke("canClickAgain", 15f);
+                audioSource.PlayOneShot(_monsterClick);
+            }
         }
     }
 
@@ -110,6 +127,15 @@ public class AIEnemy : MonoBehaviour
         {
             navAgent.SetDestination(lastHeardPosition);
             animator.SetFloat("Walk", 1);
+
+            if (canClick)
+            {
+                canClick = false;
+                Invoke("canClickAgain", 5f);
+                audioSource.PlayOneShot(_monsterClick);
+            }
+
+
             if (Vector3.Distance(transform.position, lastHeardPosition) < 3f)
             {
                 SwitchState(AIState.Roaming);
@@ -154,8 +180,16 @@ public class AIEnemy : MonoBehaviour
         // If attack animation is complete
         if (currentAttackTimer >= attackDuration)
         {
+            // Play Audio
+            if (canGrunt)
+            {
+                canClick = false;
+                Invoke("canGruntAgain", 5f);
+                audioSource.PlayOneShot(_monsterGrunt);
+            }
+
             // Deal damage to player
-            SceneManager.LoadScene(4);
+            playerSan.SetSanity(playerSan.GetSanity() - 10);
             
             // Set attack cooldown and switch to recovery state
             attackTimer = attackCooldown;
@@ -247,6 +281,12 @@ public class AIEnemy : MonoBehaviour
         if (collision.collider.CompareTag("person") && currentState != AIState.Attacking && currentState != AIState.Recovering)
         {
             SwitchState(AIState.Attacking);
-        } 
+        } else if (collision.collider.CompareTag("person"))
+        {
+
+        }
     }
+
+    void canClickAgain() { canClick = true; }
+    void canGruntAgain() { canGrunt = true; }
 }

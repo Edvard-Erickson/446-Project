@@ -10,7 +10,6 @@ public class PlayerSanity : MonoBehaviour
     public SanityBar sanbar;
     public float maxSan;
     public GameObject monster;
-    public float currSan;
     public PostProcessVolume ppv;
 
 
@@ -19,7 +18,6 @@ public class PlayerSanity : MonoBehaviour
     {
         ppv = GetComponent<PostProcessVolume>();
         ppv.weight = 0f;
-        currSan = maxSan;
         sanbar.setMax(maxSan);
         StartCoroutine(tickSanity());
     }
@@ -27,7 +25,7 @@ public class PlayerSanity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currSan <= 0)
+        if (sanbar.GetSanity() <= 0)
         {
             SceneManager.LoadScene(4);
         }
@@ -39,16 +37,15 @@ public class PlayerSanity : MonoBehaviour
         {
             if ((monster.transform.position - transform.position).magnitude < 5)
             {
-                ppv.weight = 1 - (currSan / maxSan);
-                currSan = currSan - 1f;
-                sanbar.SetSanity(currSan);
+                ppv.weight = 1 - (sanbar.GetSanity() / maxSan);
+                sanbar.SetSanity(sanbar.GetSanity() - 1f);
                 yield return new WaitForSeconds(1f);
             }
             else
             {
-                ppv.weight = 1 - (currSan / maxSan);
-                currSan = currSan - .1f;
-                sanbar.SetSanity(currSan);
+                ppv.weight = 1 - (sanbar.GetSanity() / maxSan);
+                sanbar.SetSanity(sanbar.GetSanity() - .1f); 
+                
                 yield return new WaitForSeconds(1f);
             }
 
